@@ -8,9 +8,12 @@
 // const targetElement = findElementByClass(rootElement, 'my-class');
 // console.log(targetElement);
 
+console.log("--------- 1 ---------");
+
 const arr = [1, 5, 7, 9];
 console.log(Math.min(...arr));
 
+console.log("--------- 2 ---------");
 const createCounter = (initialValue) => {
     let value = initialValue;
     return {
@@ -29,32 +32,42 @@ const createCounter = (initialValue) => {
 const counter = createCounter(10);
 counter.increment();
 console.log(counter.getValue());
+counter.increment();
+console.log(counter.getValue());
 counter.decrement();
 console.log(counter.getValue());
 
-let serchElement = [];
-function findElementByClass(rootEl, classEl) {
-    if (rootEl.hasChildNodes()) {
-        for (let element of rootEl.children) {
-            if (element.className === classEl) {
-                serchElement.push(element);
-                if (serchElement[0].className !== classEl) {
-                    serchElement = [];
-                    serchElement.push(element);
-                }
+console.log("--------- 3 ---------");
+// function findElementByClass(root, className) {
+//     if (
+//         root.nodeType === Node.ELEMENT_NODE &&
+//         root.classList.contains(className)
+//     ) {
+//         return root;
+//     } else if (root.childNodes.length) {
+//         let element = findElementByClass(root.firstChild, className);
+
+//         if (element) {
+//             return element;
+//         }
+//     }
+
+//     return null;
+// }
+function findElementByClass(element, className) {
+    if (element.classList.contains(className)) {
+        return element;
+    } else {
+        for (let child of element.children) {
+            const result = findElementByClass(child, className);
+            if (result) {
+                return result;
             }
-            findElementByClass(element, classEl);
         }
     }
-    return serchElement[0];
+    return null;
 }
 
 const rootElement = document.getElementById("root");
-const targetElement = findElementByClass(rootElement, "chaeld6");
+const targetElement = findElementByClass(rootElement, "my-class");
 console.log(targetElement);
-
-console.log("");
-
-const rootElement_1 = document.getElementById("root1");
-const targetElement_1 = findElementByClass(rootElement_1, "class5");
-console.log(targetElement_1);
