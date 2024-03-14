@@ -38,22 +38,6 @@ counter.decrement();
 console.log(counter.getValue());
 
 console.log("--------- 3 ---------");
-// function findElementByClass(root, className) {
-//     if (
-//         root.nodeType === Node.ELEMENT_NODE &&
-//         root.classList.contains(className)
-//     ) {
-//         return root;
-//     } else if (root.childNodes.length) {
-//         let element = findElementByClass(root.firstChild, className);
-
-//         if (element) {
-//             return element;
-//         }
-//     }
-
-//     return null;
-// }
 function findElementByClass(element, className) {
     if (element.classList.contains(className)) {
         return element;
